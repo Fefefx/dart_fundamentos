@@ -17,5 +17,9 @@ void main(List<String> arguments) {
 
   // my_dart_app.functionsDynamic();
 
-  my_dart_app.functionsDateTime();
+  // my_dart_app.functionsDateTime();
+
+  // my_dart_app.functionsOperators();
+
+  my_dart_app.calculator();
 }

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 int calculate() {
   return 16 * 7;
 }
@@ -296,4 +299,76 @@ void functionsDateTime() {
   print(date1.isAfter(date2));
   print(date1.isBefore(date2));
   print(date1.compareTo(date2));
+}
+
+void functionsOperators() {
+  print('Informe a primeira nota: ');
+  var line = stdin.readLineSync(encoding: utf8);
+  var prova1 = int.parse(line ?? '0');
+  print('Informe a segunda nota: ');
+  line = stdin.readLineSync(encoding: utf8);
+  var prova2 = int.parse(line ?? '0');
+
+  print(prova1);
+  print(prova2);
+
+  var media = (prova1 + prova2) / 2;
+  print(media);
+  print(media >= 7);
+  print(media < 7);
+
+  print(prova1 == prova2);
+  print(prova1 != prova2);
+
+  print((prova1 >= 7) && (prova2 >= 7));
+  print((prova1 == 10) || (prova2 == 10));
+
+  if (media >= 7) {
+    print('O aluno passou com a nota: $media');
+  } else if (media >= 5) {
+    print('O aluno está de recuperação com a nota $media');
+  } else {
+    print('O aluno reprovou com a nota: $media');
+  }
+
+  var resultado = (prova1 >= 7) ? 'O aluno passou' : 'O aluno reprovou';
+
+  print(resultado);
+}
+
+void calculator() {
+  print('Bem-vindos a nossa calculadora!');
+  print('Informe o primeiro número: ');
+  var line = stdin.readLineSync(encoding: utf8);
+  var number1 = double.parse(line ?? '0');
+
+  print('Informe o segundo número: ');
+  line = stdin.readLineSync(encoding: utf8);
+  var number2 = double.parse(line ?? '0');
+
+  print('Informe a operação matemática (+, -, *, /)');
+  line = stdin.readLineSync(encoding: utf8);
+  var operation = line ?? '';
+
+  double result = 0;
+  switch (operation) {
+    case '+':
+      result = number1 + number2;
+      break;
+    case '-':
+      result = number1 - number2;
+      break;
+    case '*':
+      result = number1 * number2;
+      break;
+    case '/':
+      result = number1 / number2;
+      break;
+    default:
+      print('Operação inválida!');
+      exit(0);
+  }
+
+  print('Operação solicitada: $operation');
+  print('O resultado da operação é: $result');
 }
