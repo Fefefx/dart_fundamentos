@@ -21,5 +21,7 @@ void main(List<String> arguments) {
 
   // my_dart_app.functionsOperators();
 
-  my_dart_app.calculator();
+  // my_dart_app.calculator();
+
+  my_dart_app.loop();
 }

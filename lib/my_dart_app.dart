@@ -372,3 +372,81 @@ void calculator() {
   print('Operação solicitada: $operation');
   print('O resultado da operação é: $result');
 }
+
+void loop() {
+  // List<String> listNames = ['Felipe', 'Natan', 'Renan'];
+  // for (var i = 0; i < listNames.length; i++) {
+  //   print(listNames[i]);
+  // }
+
+  // int result = 0;
+  // for (var i = 1; i <= 500; i++) {
+  //   result += i;
+  //   print('$i - $result');
+  // }
+
+  // var result = 0;
+  // var quantity = 0;
+  // print('Informe a quantidade de números: ');
+  // var line = stdin.readLineSync(encoding: utf8);
+  // quantity = int.parse(line ?? '0');
+  // for (var i = 0; i < quantity; i++) {
+  //   print('Informe o número: ');
+  //   line = stdin.readLineSync(encoding: utf8);
+  //   var number = int.parse(line ?? '0');
+  //   result += number;
+  //   print('$i - $result');
+  // }
+
+  // List<int> numbers = [1, 5, 9, 50, 85, 45, 90, 74];
+  // int accumulate = 0;
+  // for (var number in numbers) {
+  //   accumulate += number;
+  //   print(number);
+  // }
+
+  // print(accumulate);
+
+  // List<String> letters = ['B', 'A', 'G', 'K'];
+  // for (var letter in letters) {
+  //   print(letter);
+  // }
+
+  // letters.forEach((letter) {
+  //   print(letter);
+  // });
+
+  // var count = 0;
+  // var number = 10;
+  // while (count < number) {
+  //   count += 1;
+  //   print(count);
+  // }
+
+  // print("Digite um número ou 'S' para sair: ");
+  // var line = stdin.readLineSync(encoding: utf8);
+  // double accumulator = 0;
+  // while (line != 'S') {
+  //   double number = double.parse(line ?? '0');
+  //   accumulator += number;
+  //   print("Digite um número ou 'S' para sair: ");
+  //   line = stdin.readLineSync(encoding: utf8);
+  // }
+
+  // print(accumulator);
+
+  var option = '';
+  var accumulate = 0.0;
+
+  do {
+    print("Digite um número ou 'S' para sair: ");
+    var line = stdin.readLineSync(encoding: utf8);
+    option = line ?? '';
+    var number = double.tryParse(option);
+    if (number != null) {
+      accumulate += number;
+    }
+  } while (option != 'S');
+
+  print(accumulate);
+}
