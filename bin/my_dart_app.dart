@@ -23,5 +23,9 @@ void main(List<String> arguments) {
 
   // my_dart_app.calculator();
 
-  my_dart_app.loop();
+  // my_dart_app.loop();
+
+  my_dart_app.myFunction();
+
+  // print(my_dart_app.fatorial(10));
 }

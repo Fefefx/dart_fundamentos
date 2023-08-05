@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:my_dart_app/functions/utils.dart' as utils;
 
 int calculate() {
   return 16 * 7;
@@ -338,31 +339,34 @@ void functionsOperators() {
 
 void calculator() {
   print('Bem-vindos a nossa calculadora!');
-  print('Informe o primeiro número: ');
-  var line = stdin.readLineSync(encoding: utf8);
-  var number1 = double.parse(line ?? '0');
+  var number1 = readConsolDouble('Informe o primeiro número: ');
 
-  print('Informe o segundo número: ');
-  line = stdin.readLineSync(encoding: utf8);
-  var number2 = double.parse(line ?? '0');
+  var number2 = readConsolDouble('Informe o segundo número: ');
 
-  print('Informe a operação matemática (+, -, *, /)');
-  line = stdin.readLineSync(encoding: utf8);
-  var operation = line ?? '';
+  var operation = readConsol('Informe a operação matemática (+, -, *, /)');
 
+  calculateCalculator(operation, number1, number2);
+}
+
+double readConsolDouble(String text) {
+  var number = double.tryParse(readConsol(text));
+  return number ?? 0.0;
+}
+
+void calculateCalculator(String operation, double number1, double number2) {
   double result = 0;
   switch (operation) {
     case '+':
-      result = number1 + number2;
+      result = calculatorSum(number1, number2);
       break;
     case '-':
-      result = number1 - number2;
+      result = calculatorSub(number1, number2);
       break;
     case '*':
-      result = number1 * number2;
+      result = calculatorMult(number1, number2);
       break;
     case '/':
-      result = number1 / number2;
+      result = calculatorDiv(number1, number2);
       break;
     default:
       print('Operação inválida!');
@@ -371,6 +375,33 @@ void calculator() {
 
   print('Operação solicitada: $operation');
   print('O resultado da operação é: $result');
+}
+
+String readConsol(String text) {
+  print(text);
+  var line = stdin.readLineSync(encoding: utf8);
+  return line ?? '';
+}
+
+double calculatorSum(double number1, double number2) {
+  return number1 + number2;
+}
+
+double calculatorSub(double number1, double number2) {
+  return number1 - number2;
+}
+
+double calculatorMult(double number1, double number2) {
+  return number1 * number2;
+}
+
+double calculatorDiv(double number1, double number2) {
+  if (number2 == 0) {
+    print('Não é possível dividir por 0');
+    exit(0);
+  } else {
+    return number1 / number2;
+  }
 }
 
 void loop() {
@@ -423,30 +454,87 @@ void loop() {
   //   print(count);
   // }
 
-  // print("Digite um número ou 'S' para sair: ");
-  // var line = stdin.readLineSync(encoding: utf8);
-  // double accumulator = 0;
-  // while (line != 'S') {
-  //   double number = double.parse(line ?? '0');
-  //   accumulator += number;
+  var line = utils.readConsol("Digite um número ou 'S' para sair: ");
+  double accumulator = 0;
+  List<double> numbers = [];
+  while (line != 'S') {
+    numbers.add(double.parse(line));
+    line = utils.readConsol("Digite um número ou 'S' para sair: ");
+  }
+
+  var result = utils.sumList(numbers);
+  print(result);
+
+  // var option = '';
+  // var accumulate = 0.0;
+
+  // do {
   //   print("Digite um número ou 'S' para sair: ");
-  //   line = stdin.readLineSync(encoding: utf8);
-  // }
+  //   var line = stdin.readLineSync(encoding: utf8);
+  //   option = line ?? '';
+  //   var number = double.tryParse(option);
+  //   if (number != null) {
+  //     accumulate += number;
+  //   }
+  // } while (option != 'S');
 
-  // print(accumulator);
+  // print(accumulate);
+}
 
-  var option = '';
-  var accumulate = 0.0;
+void myFunction() {
+  // printHelloWorld();
+  // printName('Felipe');
+  // var number = returnNumber();
+  // print(number);
 
-  do {
-    print("Digite um número ou 'S' para sair: ");
-    var line = stdin.readLineSync(encoding: utf8);
-    option = line ?? '';
-    var number = double.tryParse(option);
-    if (number != null) {
-      accumulate += number;
-    }
-  } while (option != 'S');
+  // var result = sum(10, 50);
+  // print(result);
 
-  print(accumulate);
+  printFullName('Felipe');
+  printFullName('Felipe', surname: 'Mantoan Pardim');
+
+  printData('Hello World!');
+  printData(sumArrow(10, 20).toString());
+
+  print(execute(10, increment));
+  print(execute(10, decrement));
+}
+
+int execute(int number, Function func) => func(number);
+
+int increment(int number) => number + 1;
+int decrement(int number) => number - 1;
+
+printData(String text) => print(text);
+
+sumArrow(int number1, int number2) => number1 + number2;
+
+void printFullName(String name, {String? surname}) {
+  print('My name is $name');
+  if (surname != null) {
+    print('My lastname is $surname');
+  }
+}
+
+void printHelloWorld() {
+  print('Hello World !');
+}
+
+void printName(String name) {
+  print('My name is $name');
+}
+
+int returnNumber() {
+  return 30;
+}
+
+int sum(int number1, int number2) {
+  return (number1 + number2) * 50;
+}
+
+int fatorial(int number) {
+  if (number > 1) {
+    return number * fatorial(number - 1);
+  }
+  return number;
 }
