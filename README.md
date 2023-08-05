@@ -1,2 +1,3 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+# Fundamentos da Linguagem Dart
+
+Exemplos dos principais conceitos e comandos da linguagem de programação Dart em uma aplicação console.
